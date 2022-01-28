@@ -1,0 +1,9 @@
+# suppress inspection "UnusedProperty" for whole file
+maven.compiler:
+  showDeprecation: true
+  showWarnings: true
+
+lombok:
+  addOutputDirectory: false
+  sourceDirectory: ${project.basedir}/src/main/java
+  testSourceDirectory: ${project.basedir}/src/test/java
