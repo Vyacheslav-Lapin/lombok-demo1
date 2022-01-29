@@ -1,6 +1,7 @@
-package ru.vlapin.demo.lombokdemo.sneakythrows;
+package ru.vlapin.demo.lombokdemo.stable.sneakythrows;
 
 import java.io.UnsupportedEncodingException;
+
 import lombok.SneakyThrows;
 
 public class SneakyThrowsExampleWithLombok implements Runnable {

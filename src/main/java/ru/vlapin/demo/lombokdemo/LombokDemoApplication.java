@@ -36,6 +36,13 @@ public class LombokDemoApplication {
   @Bean
   @ConfigurationProperties("my-properties2")
   JavaConfigBasedSetterPropertiesPlaceholderExample mySetterProperties2() {
+
+//    record Abc(int x, String s, boolean b) {
+//    }
+//
+//    val abc = new Abc(786345, "Quick brown fox, jumps over the lazy dog!", true);
+//    val b = abc.b();
+
     return new JavaConfigBasedSetterPropertiesPlaceholderExample();
   }
 }

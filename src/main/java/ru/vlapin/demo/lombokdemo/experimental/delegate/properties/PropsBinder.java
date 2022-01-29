@@ -1,12 +1,5 @@
-package ru.vlapin.demo.lombokdemo.delegate.properties;
+package ru.vlapin.demo.lombokdemo.experimental.delegate.properties;
 
-import static io.vavr.API.$;
-import static io.vavr.API.Case;
-import static io.vavr.API.Match;
-
-import io.vavr.CheckedFunction0;
-import io.vavr.CheckedFunction1;
-import io.vavr.Function1;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Parameter;
@@ -14,11 +7,17 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Properties;
 import java.util.function.UnaryOperator;
+
+import io.vavr.CheckedFunction0;
+import io.vavr.CheckedFunction1;
+import io.vavr.Function1;
 import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
-import ru.vlapin.demo.lombokdemo.delegate.commons.InputStreamUtils;
+import ru.vlapin.demo.lombokdemo.experimental.delegate.commons.InputStreamUtils;
+
+import static io.vavr.API.*;
 
 @UtilityClass
 public class PropsBinder {

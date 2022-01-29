@@ -38,15 +38,16 @@ public class Cat {
 
   @NonNull String name;
 
-  @Override public boolean equals(Object o) {
-    return this == o || o != null
-                            && Hibernate.getClass(this) == Hibernate.getClass(o)
-                            && id != null
-                            && o instanceof Cat cat
-                            && Objects.equals(id, cat.id);
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+    Cat cat = (Cat) o;
+    return id != null && Objects.equals(id, cat.id);
   }
 
-  @Override public int hashCode() {
+  @Override
+  public int hashCode() {
     return getClass().hashCode();
   }
 }

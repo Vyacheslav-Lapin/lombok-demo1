@@ -1,8 +1,9 @@
 package ru.vlapin.demo.lombokdemo.stable.equalshashcode.canequals;
 
 import java.awt.Color;
+import java.util.Objects;
 
-public class ColoredPoint1 extends Point {
+public class ColoredPoint1 extends Point1 {
 
   Color color;
 
@@ -15,8 +16,7 @@ public class ColoredPoint1 extends Point {
     return this == o
                || super.equals(o)
                       && o instanceof ColoredPoint1 coloredPoint
-                      && (color != null ? color.equals(coloredPoint.color)
-                              : coloredPoint.color == null);
+                      && Objects.equals(color, coloredPoint.color);
 
   }
 

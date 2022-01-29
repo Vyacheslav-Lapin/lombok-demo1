@@ -1,4 +1,4 @@
-package ru.vlapin.demo.lombokdemo.delegate.properties;
+package ru.vlapin.demo.lombokdemo.experimental.delegate.properties;
 
 class PropsBinderException extends RuntimeException {
   PropsBinderException(String message) {

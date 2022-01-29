@@ -1,13 +1,5 @@
 package ru.vlapin.demo.lombokdemo.common;
 
-import static java.util.Spliterator.ORDERED;
-import static java.util.Spliterators.spliteratorUnknownSize;
-import static java.util.stream.StreamSupport.stream;
-
-import io.vavr.CheckedFunction1;
-import io.vavr.CheckedFunction2;
-import io.vavr.Function2;
-import io.vavr.Function3;
 import java.io.File;
 import java.net.URL;
 import java.util.Arrays;
@@ -15,11 +7,20 @@ import java.util.Enumeration;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Stream;
+
+import io.vavr.CheckedFunction1;
+import io.vavr.CheckedFunction2;
+import io.vavr.Function2;
+import io.vavr.Function3;
 import lombok.SneakyThrows;
 import lombok.experimental.ExtensionMethod;
 import lombok.experimental.UtilityClass;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
+
+import static java.util.Spliterator.*;
+import static java.util.Spliterators.*;
+import static java.util.stream.StreamSupport.*;
 
 @UtilityClass
 @ExtensionMethod(FunctionUtils.class)

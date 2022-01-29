@@ -1,4 +1,4 @@
-package ru.vlapin.demo.lombokdemo.delegate.cp;
+package ru.vlapin.demo.lombokdemo.experimental.delegate.cp;
 
 public class ConnectionPoolException extends RuntimeException {
 

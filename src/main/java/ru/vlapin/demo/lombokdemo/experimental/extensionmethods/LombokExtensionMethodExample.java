@@ -1,6 +1,7 @@
-package ru.vlapin.demo.lombokdemo.extensionmethods;
+package ru.vlapin.demo.lombokdemo.experimental.extensionmethods;
 
 import java.util.Arrays;
+
 import lombok.experimental.ExtensionMethod;
 
 @ExtensionMethod({Arrays.class, Extensions.class})

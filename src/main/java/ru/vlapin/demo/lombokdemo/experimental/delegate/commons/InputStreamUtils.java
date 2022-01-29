@@ -1,7 +1,5 @@
-package ru.vlapin.demo.lombokdemo.delegate.commons;
+package ru.vlapin.demo.lombokdemo.experimental.delegate.commons;
 
-import io.vavr.CheckedConsumer;
-import io.vavr.CheckedFunction1;
 import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.Files;
@@ -10,6 +8,9 @@ import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import io.vavr.CheckedConsumer;
+import io.vavr.CheckedFunction1;
 import lombok.Cleanup;
 import lombok.SneakyThrows;
 import lombok.experimental.ExtensionMethod;

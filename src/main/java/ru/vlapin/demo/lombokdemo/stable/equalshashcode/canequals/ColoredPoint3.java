@@ -3,26 +3,31 @@ package ru.vlapin.demo.lombokdemo.stable.equalshashcode.canequals;
 import java.awt.Color;
 import java.util.Objects;
 
-public class ColoredPoint1 extends Point1 {
+import org.jetbrains.annotations.Contract;
+
+public class ColoredPoint3 extends Point2 {
 
   Color color;
 
-  ColoredPoint1(int x, int y, Color color) {
+  ColoredPoint3(int x, int y, Color color) {
     super(x, y);
     this.color = color;
   }
 
+  @Contract(value = "null -> false", pure = true)
   @Override public boolean equals(Object o) {
     return this == o
                || super.equals(o)
-                      && o instanceof ColoredPoint1 coloredPoint
+                      && o instanceof ColoredPoint3 coloredPoint
                       && Objects.equals(color, coloredPoint.color);
+  }
 
+  @Override
+  protected boolean canEqual(Object other) {
+    return other instanceof ColoredPoint3;
   }
 
   @Override public int hashCode() {
-    int result = super.hashCode();
-    result = 31 * result + (color != null ? color.hashCode() : 0);
-    return result;
-  }
+    return 31 * super.hashCode() + (
+        color != null ? color.hashCode() : 0); }
 }

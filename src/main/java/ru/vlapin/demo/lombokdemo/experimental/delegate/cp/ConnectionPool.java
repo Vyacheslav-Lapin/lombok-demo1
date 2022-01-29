@@ -1,6 +1,5 @@
-package ru.vlapin.demo.lombokdemo.delegate.cp;
+package ru.vlapin.demo.lombokdemo.experimental.delegate.cp;
 
-import io.vavr.Function2;
 import java.io.Closeable;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -9,12 +8,14 @@ import java.util.concurrent.BlockingQueue;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
+
+import io.vavr.Function2;
 import lombok.SneakyThrows;
 import lombok.experimental.NonFinal;
 import lombok.val;
-import ru.vlapin.demo.lombokdemo.delegate.commons.InputStreamUtils;
-import ru.vlapin.demo.lombokdemo.delegate.PooledConnection;
-import ru.vlapin.demo.lombokdemo.delegate.properties.PropsBinder;
+import ru.vlapin.demo.lombokdemo.experimental.delegate.PooledConnection;
+import ru.vlapin.demo.lombokdemo.experimental.delegate.commons.InputStreamUtils;
+import ru.vlapin.demo.lombokdemo.experimental.delegate.properties.PropsBinder;
 
 public class ConnectionPool implements Closeable, Supplier<Connection> {
 
@@ -27,20 +28,20 @@ public class ConnectionPool implements Closeable, Supplier<Connection> {
   @SneakyThrows
   private ConnectionPool(String fileName) {
 
-    var connectionFactory = PropsBinder.from(fileName, ConnectionFactory.class);
+    val connectionFactory = PropsBinder.from(fileName, ConnectionFactory.class);
 
     Function<Connection, PooledConnection> pooledConnectionFactory =
         Function2.of(PooledConnection::new)
             .apply(this::closePolledConnection);
 
     connectionQueue = connectionFactory.get()
-                          .map(pooledConnectionFactory)
-                          .collect(Collectors.toCollection(connectionFactory::getSizedBlockingQueue));
+        .map(pooledConnectionFactory)
+        .collect(Collectors.toCollection(connectionFactory::getSizedBlockingQueue));
 
     //init
     val sql = connectionFactory.getSqlInitFiles()
-                  .map(InputStreamUtils::getFileAsString)
-                  .collect(Collectors.joining());
+        .map(InputStreamUtils::getFileAsString)
+        .collect(Collectors.joining());
 
     try (val connection = get();
          val statement = connection.createStatement()) {
@@ -89,7 +90,8 @@ public class ConnectionPool implements Closeable, Supplier<Connection> {
   public Connection get() {
     try {
       return connectionQueue.take();
-    } catch (InterruptedException e) {
+    }
+    catch (InterruptedException e) {
       throw new ConnectionPoolException(
           "Error connecting to the data source.", e);
     }

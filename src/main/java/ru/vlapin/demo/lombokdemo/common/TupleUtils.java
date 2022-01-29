@@ -20,7 +20,6 @@ public class TupleUtils {
   public <T1, T2, T3> @NotNull Tuple3<T1, T2, T3> tupleWith(@NotNull T1 self,
                                                             @NotNull T2 t2,
                                                             @NotNull T3 t3) {
-
     return Tuple.of(self, t2, t3);
   }
 
@@ -28,7 +27,6 @@ public class TupleUtils {
                                                                     @NotNull T2 t2,
                                                                     @NotNull T3 t3,
                                                                     @NotNull T4 t4) {
-
     return Tuple.of(self, t2, t3, t4);
   }
 

@@ -22,13 +22,12 @@
 
     <!--region Bills of material (BOM)-->
     <spring-cloud.version>2021.0.0</spring-cloud.version>
+    <testcontainers.version>1.16.2</testcontainers.version>
     <!--endregion-->
 
-    <testcontainers.version>1.16.2</testcontainers.version>
-
     <!--region Libs-->
+    <!--<lombok.version>1.18.22</lombok.version>-->
     <vavr.version>0.10.4</vavr.version>
-    <lombok.version>1.18.22</lombok.version>
     <checker.version>3.21.1</checker.version>
     <annotations.version>23.0.0</annotations.version>
     <jcip-annotations.version>1.0</jcip-annotations.version>
@@ -41,24 +40,98 @@
     <!--endregion-->
 
     <!--region Plugins-->
-    <maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
-    <maven.compiler.showWarnings>true</maven.compiler.showWarnings>
     <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
     <maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
     <versions-maven-plugin.version>2.7</versions-maven-plugin.version>
     <jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
     <sonar-maven-plugin.version>3.9.0.2155</sonar-maven-plugin.version>
     <spotbugs-maven-plugin.version>4.0.0</spotbugs-maven-plugin.version>
+
     <lombok-maven-plugin.version>1.18.20.0</lombok-maven-plugin.version>
     <lombok.addOutputDirectory>false</lombok.addOutputDirectory>
     <lombok.sourceDirectory>${project.basedir}/src/main/java</lombok.sourceDirectory>
     <lombok.testSourceDirectory>${project.basedir}/src/test/java</lombok.testSourceDirectory>
+
+    <yaml-properties-maven-plugin.version>1.1.3</yaml-properties-maven-plugin.version>
     <!--endregion-->
 
   </properties>
 
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${spring-cloud.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.testcontainers</groupId>
+        <artifactId>testcontainers-bom</artifactId>
+        <version>${testcontainers.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>io.vavr</groupId>
+        <artifactId>vavr</artifactId>
+        <version>${vavr.version}</version>
+      </dependency>
 
-  <repositories/>
+      <!--region Common Annotations (CheckerFramework, JetBrains, SpotBugs, ErrorProne)-->
+      <dependency>
+        <groupId>org.checkerframework</groupId>
+        <artifactId>checker</artifactId>
+        <version>${checker.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.jetbrains</groupId>
+        <artifactId>annotations</artifactId>
+        <version>${annotations.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>net.jcip</groupId>
+        <artifactId>jcip-annotations</artifactId>
+        <version>${jcip-annotations.version}</version>
+        <optional>true</optional>
+      </dependency>
+      <dependency>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-annotations</artifactId>
+        <version>${spotbugs.version}</version>
+        <optional>true</optional>
+      </dependency>
+      <dependency>
+        <groupId>com.google.errorprone</groupId>
+        <artifactId>error_prone_annotations</artifactId>
+        <version>${error_prone_annotations.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <!--endregion-->
+
+      <!--region OpenAPI-->
+      <dependency>
+        <groupId>org.springdoc</groupId>
+        <artifactId>springdoc-openapi-ui</artifactId>
+        <version>${springdoc-openapi.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springdoc</groupId>
+        <artifactId>springdoc-openapi-data-rest</artifactId>
+        <version>${springdoc-openapi.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springdoc</groupId>
+        <artifactId>springdoc-openapi-security</artifactId>
+        <version>${springdoc-openapi.version}</version>
+      </dependency>
+      <!--endregion-->
+
+    </dependencies>
+  </dependencyManagement>
 
   <dependencies>
     <dependency>
@@ -186,84 +259,8 @@
 
   </dependencies>
 
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-dependencies</artifactId>
-        <version>${spring-cloud.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.testcontainers</groupId>
-        <artifactId>testcontainers-bom</artifactId>
-        <version>${testcontainers.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      <dependency>
-        <groupId>io.vavr</groupId>
-        <artifactId>vavr</artifactId>
-        <version>${vavr.version}</version>
-      </dependency>
-
-      <!--region Common Annotations (CheckerFramework, JetBrains, SpotBugs, ErrorProne)-->
-      <dependency>
-        <groupId>org.checkerframework</groupId>
-        <artifactId>checker</artifactId>
-        <version>${checker.version}</version>
-        <scope>provided</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.jetbrains</groupId>
-        <artifactId>annotations</artifactId>
-        <version>${annotations.version}</version>
-        <scope>provided</scope>
-      </dependency>
-      <dependency>
-        <groupId>net.jcip</groupId>
-        <artifactId>jcip-annotations</artifactId>
-        <version>${jcip-annotations.version}</version>
-        <optional>true</optional>
-      </dependency>
-      <dependency>
-        <groupId>com.github.spotbugs</groupId>
-        <artifactId>spotbugs-annotations</artifactId>
-        <version>${spotbugs.version}</version>
-        <optional>true</optional>
-      </dependency>
-      <dependency>
-        <groupId>com.google.errorprone</groupId>
-        <artifactId>error_prone_annotations</artifactId>
-        <version>${error_prone_annotations.version}</version>
-        <scope>provided</scope>
-      </dependency>
-      <!--endregion-->
-
-      <!--region OpenAPI-->
-      <dependency>
-        <groupId>org.springdoc</groupId>
-        <artifactId>springdoc-openapi-ui</artifactId>
-        <version>${springdoc-openapi.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.springdoc</groupId>
-        <artifactId>springdoc-openapi-data-rest</artifactId>
-        <version>${springdoc-openapi.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.springdoc</groupId>
-        <artifactId>springdoc-openapi-security</artifactId>
-        <version>${springdoc-openapi.version}</version>
-      </dependency>
-      <!--endregion-->
-
-    </dependencies>
-  </dependencyManagement>
-
   <build>
-    <!--<defaultGoal>spring-boot:run</defaultGoal>-->
+<!--    <defaultGoal>clean lombok:delombok</defaultGoal>-->
     <defaultGoal>verify spring-boot:run</defaultGoal>
 
     <pluginManagement>
@@ -428,6 +425,32 @@
           <groupId>org.projectlombok</groupId>
           <artifactId>lombok-maven-plugin</artifactId>
           <version>${lombok-maven-plugin.version}</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+              <version>${lombok.version}</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+        <plugin>
+          <groupId>it.ozimov</groupId>
+          <artifactId>yaml-properties-maven-plugin</artifactId>
+          <version>${yaml-properties-maven-plugin.version}</version>
+          <executions>
+            <execution>
+              <phase>initialize</phase>
+              <goals>
+                <goal>read-project-properties</goal>
+              </goals>
+              <configuration>
+                <files>
+                  <!--suppress UnresolvedMavenProperty-->
+                  <file>${maven.multiModuleProjectDirectory}/maven.yml</file>
+                </files>
+              </configuration>
+            </execution>
+          </executions>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -459,6 +482,10 @@
       <plugin>
         <groupId>org.projectlombok</groupId>
         <artifactId>lombok-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>it.ozimov</groupId>
+        <artifactId>yaml-properties-maven-plugin</artifactId>
       </plugin>
     </plugins>
   </build>

@@ -1,4 +1,4 @@
-package ru.vlapin.demo.lombokdemo.extensionmethods;
+package ru.vlapin.demo.lombokdemo.experimental.extensionmethods;
 
 import lombok.experimental.UtilityClass;
 import org.jetbrains.annotations.Contract;
@@ -15,7 +15,7 @@ public class Extensions {
   public String toTitleCase(@NotNull String that) {
     return that.isEmpty() ? that :
                String.format("%s%s",
-                   Character.toTitleCase(that.charAt(0)),
-                   that.substring(1).toLowerCase());
+                             Character.toTitleCase(that.charAt(0)),
+                             that.substring(1).toLowerCase());
   }
 }

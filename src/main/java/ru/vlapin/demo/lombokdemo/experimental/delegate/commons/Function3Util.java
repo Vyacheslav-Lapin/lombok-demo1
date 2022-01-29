@@ -1,4 +1,4 @@
-package ru.vlapin.demo.lombokdemo.delegate.commons;
+package ru.vlapin.demo.lombokdemo.experimental.delegate.commons;
 
 import io.vavr.Function0;
 import lombok.experimental.UtilityClass;

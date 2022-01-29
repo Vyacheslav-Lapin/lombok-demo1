@@ -2,7 +2,8 @@ package ru.vlapin.demo.lombokdemo.stable.builder;
 
 import lombok.Builder;
 
-public class BuilderDemo {
+@Builder
+public class BuilderBeforeClassDemo {
   int x;
   String s;
   boolean b;

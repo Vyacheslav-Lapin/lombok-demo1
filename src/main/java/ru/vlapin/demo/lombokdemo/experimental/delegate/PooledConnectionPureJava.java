@@ -1,4 +1,4 @@
-package ru.vlapin.demo.lombokdemo.delegate;
+package ru.vlapin.demo.lombokdemo.experimental.delegate;
 
 import java.sql.Array;
 import java.sql.Blob;
@@ -19,6 +19,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.Executor;
 import java.util.function.Consumer;
+
 import lombok.SneakyThrows;
 
 //@AllArgsConstructor
